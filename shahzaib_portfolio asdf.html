@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Shahzaib Bukhari — Creative Director & AI Artist</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --black: #080808;
+  --white: #F5F0E8;
+  --orange: #FF5C1A;
+  --grey: #1A1A1A;
+  --mid: #888888;
+}
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--black);
+  color: var(--white);
+  font-family: 'DM Sans', Georgia, sans-serif;
+  font-weight: 300;
+  overflow-x: hidden;
+}
+nav {
+  position: fixed; top:0; left:0; right:0; z-index:100;
+  padding: 1.4rem 4rem;
+  display: flex; justify-content: space-between; align-items: center;
+  background: linear-gradient(to bottom, rgba(8,8,8,0.97), transparent);
+}
+.nav-logo { font-family: 'Bebas Neue', Impact, sans-serif; font-size: 1.4rem; letter-spacing: 0.15em; color: var(--white); text-decoration: none; }
+.nav-logo span { color: var(--orange); }
+.nav-links { display:flex; gap:2.5rem; list-style:none; }
+.nav-links a { color: var(--mid); text-decoration:none; font-size:0.78rem; letter-spacing:0.12em; text-transform:uppercase; transition: color 0.2s; }
+.nav-links a:hover { color: var(--white); }
+.hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 0 4rem 6rem;
+  background: radial-gradient(ellipse 80% 60% at 70% 40%, rgba(255,92,26,0.07) 0%, transparent 60%);
+}
+.hero-label { font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--orange); margin-bottom: 1.5rem; animation: fadeUp 0.8s 0.2s both; }
+.hero-name { font-family: 'Bebas Neue', Impact, sans-serif; font-size: clamp(5rem, 13vw, 13rem); line-height: 0.88; animation: fadeUp 0.9s 0.4s both; }
+.hero-name .line2 { color: var(--orange); }
+.hero-tagline { margin-top: 2.5rem; font-family: 'DM Serif Display', Georgia, serif; font-style: italic; font-size: clamp(1rem, 2vw, 1.4rem); color: var(--mid); max-width: 500px; line-height: 1.6; animation: fadeUp 0.9s 0.6s both; }
+.hero-badges { margin-top: 2.5rem; display:flex; gap:1rem; animation: fadeUp 0.9s 0.8s both; }
+.badge { border: 1px solid var(--orange); padding: 0.45rem 1.2rem; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--orange); }
+section { padding: 7rem 4rem; }
+.section-label { font-size: 0.68rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--orange); margin-bottom: 0.8rem; }
+.section-title { font-family: 'Bebas Neue', Impact, sans-serif; font-size: clamp(3rem, 6vw, 5rem); line-height: 0.93; margin-bottom: 3rem; }
+.about { background: var(--grey); position: relative; overflow: hidden; }
+.about-video-bg { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+.about-video-bg iframe { width: 100%; height: 100%; border: none; object-fit: cover; opacity: 0.08; transform: scale(1.05); }
+.about-video-bg::after { content:''; position:absolute; inset:0; background: linear-gradient(to right, rgba(26,26,26,0.97) 40%, rgba(26,26,26,0.7) 100%); }
+.about > *:not(.about-video-bg) { position: relative; z-index: 1; }
+.about-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 6rem; align-items: start; }
+.about-text p { font-size: 1rem; line-height: 1.85; color: #CCBFA8; margin-bottom: 1.4rem; }
+.about-text p strong { color: var(--white); font-weight: 500; }
+.about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+.stat { background: var(--black); padding: 2.2rem; }
+.stat-num { font-family: 'Bebas Neue', Impact, sans-serif; font-size: 3.2rem; color: var(--orange); line-height: 1; }
+.stat-label { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mid); margin-top: 0.4rem; }
+.services-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; }
+.service-card { background: var(--grey); padding: 2.8rem 2.2rem; border-left: 3px solid transparent; transition: all 0.3s; }
+.service-card:hover { background: #1F1F1F; border-left-color: var(--orange); }
+.service-num { font-family: 'Bebas Neue', Impact, sans-serif; font-size: 3.5rem; color: rgba(255,92,26,0.12); line-height:1; margin-bottom:0.8rem; }
+.service-title { font-family: 'DM Serif Display', Georgia, serif; font-size: 1.3rem; margin-bottom: 0.9rem; color: var(--white); }
+.service-desc { font-size: 0.86rem; line-height: 1.75; color: var(--mid); }
+.service-tags { margin-top: 1.3rem; display:flex; flex-wrap:wrap; gap:0.4rem; }
+.tag { font-size: 0.65rem; letter-spacing: 0.08em; text-transform: uppercase; border: 1px solid #333; padding: 0.22rem 0.65rem; color: #555; }
+.tools { background: var(--grey); }
+.tools-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 2px; }
+.tool-category { background: var(--black); padding: 2.4rem; }
+.tool-cat-label { font-size: 0.66rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--orange); margin-bottom: 1.1rem; }
+.tool-list { display:flex; flex-wrap:wrap; gap:0.55rem; }
+.tool-pill { background: #1A1A1A; border: 1px solid #2A2A2A; padding: 0.38rem 0.9rem; font-size: 0.8rem; color: var(--white); transition: all 0.2s; cursor: default; }
+.tool-pill:hover { background: var(--orange); border-color: var(--orange); color: var(--black); }
+.case-study { background: var(--grey); margin-bottom: 2px; }
+.case-study-header { padding: 3rem 3rem 2rem; display:flex; gap: 2rem; align-items:flex-start; }
+.case-num { font-family: 'Bebas Neue', Impact, sans-serif; font-size: 5rem; color: rgba(255,92,26,0.12); line-height:1; flex-shrink:0; }
+.case-type { font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--orange); margin-bottom: 0.6rem; }
+.case-title { font-family: 'DM Serif Display', Georgia, serif; font-size: clamp(1.5rem, 3vw, 2.1rem); line-height: 1.2; margin-bottom: 0.8rem; }
+.case-tagline { font-size: 0.92rem; color: var(--mid); line-height: 1.7; max-width: 580px; }
+.case-tools-row { display:flex; flex-wrap:wrap; gap:0.4rem; margin-top:1rem; }
+.case-body { display: grid; grid-template-columns: 1fr 1fr; }
+.case-video { background:#000; }
+.case-video iframe { width:100%; height:340px; border:none; display:block; }
+.case-video .video-note { font-size:0.65rem; color:#333; letter-spacing:0.08em; text-transform:uppercase; padding:0.5rem 1rem; background:#0D0D0D; }
+.case-breakdown { padding: 2.5rem; display:flex; flex-direction:column; gap:1.6rem; background: #141414; }
+.breakdown-label { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--orange); margin-bottom: 0.45rem; }
+.breakdown-text { font-size: 0.88rem; line-height: 1.75; color: #CCBFA8; }
+.breakdown-text strong { color: var(--white); font-weight: 500; }
+.testimonials { background: var(--grey); }
+.testimonials-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; }
+.testimonial-card { background: var(--black); padding: 2.8rem 2.2rem; position:relative; }
+.testimonial-card::before { content: '\201C'; font-family: 'DM Serif Display', Georgia, serif; font-size: 5rem; color: var(--orange); opacity: 0.15; position: absolute; top: 1rem; left: 1.8rem; line-height:1; }
+.testimonial-text { font-family: 'DM Serif Display', Georgia, serif; font-style: italic; font-size: 0.98rem; line-height: 1.75; color: #CCBFA8; margin-bottom: 1.8rem; position:relative; z-index:1; }
+.testimonial-author { font-size: 0.73rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--white); }
+.testimonial-role { font-size: 0.68rem; color: var(--mid); margin-top: 0.25rem; }
+.placeholder-note { font-size: 0.63rem; color: #2A2A2A; margin-top: 0.4rem; letter-spacing:0.08em; text-transform:uppercase; }
+.contact-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 8rem; align-items: center; }
+.big-text { font-family: 'Bebas Neue', Impact, sans-serif; font-size: clamp(3.5rem, 7vw, 6.5rem); line-height: 0.9; margin-bottom: 2rem; }
+.big-text span { color: var(--orange); }
+.contact-left p { font-size: 0.92rem; color: var(--mid); line-height: 1.85; max-width: 360px; }
+.cta-btn { display: inline-block; margin-top: 2.5rem; background: var(--orange); color: var(--black); padding: 0.9rem 2.2rem; font-size: 0.78rem; letter-spacing: 0.15em; text-transform: uppercase; text-decoration: none; font-weight: 500; transition: all 0.2s; }
+.cta-btn:hover { background: var(--white); transform: translateY(-2px); }
+.contact-details { display:flex; flex-direction:column; gap:1.8rem; }
+.contact-item { border-left: 2px solid #222; padding-left: 1.4rem; transition: border-color 0.2s; }
+.contact-item:hover { border-color: var(--orange); }
+.contact-item-label { font-size: 0.63rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mid); margin-bottom: 0.35rem; }
+.contact-item-value { font-size: 0.98rem; color: var(--white); text-decoration: none; transition: color 0.2s; }
+a.contact-item-value:hover { color: var(--orange); }
+.available { color: #4CAF50 !important; }
+footer { background: var(--grey); padding: 1.8rem 4rem; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #1A1A1A; }
+footer p { font-size: 0.72rem; color: #3A3A3A; letter-spacing: 0.08em; }
+footer span { color: var(--orange); }
+@keyframes fadeUp { from { opacity:0; transform: translateY(28px); } to { opacity:1; transform: translateY(0); } }
+@media (max-width: 900px) {
+  nav { padding: 1.2rem 2rem; }
+  .nav-links { display: none; }
+  section { padding: 5rem 2rem; }
+  .hero { padding: 0 2rem 5rem; }
+  .about-grid, .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
+  .services-grid, .testimonials-grid { grid-template-columns: 1fr; }
+  .tools-grid { grid-template-columns: 1fr; }
+  .case-body { grid-template-columns: 1fr; }
+  .case-video iframe { height: 240px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">SB<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#tools">Tools</a></li>
+    <li><a href="#projects">Work</a></li>
+    <li><a href="#testimonials">Clients</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section class="hero" id="home">
+  <p class="hero-label">Creative Director &nbsp;&bull;&nbsp; AI Image &amp; Video Artist &nbsp;&bull;&nbsp; Lahore, Pakistan</p>
+  <h1 class="hero-name">SHAHZAIB<br><span class="line2">BUKHARI</span></h1>
+  <p class="hero-tagline">I direct stories and generate worlds — where documentary filmmaking meets generative AI.</p>
+  <div class="hero-badges">
+    <div class="badge">Creative Director</div>
+    <div class="badge">AI Generation Artist</div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="about-video-bg">
+    <iframe src="https://drive.google.com/file/d/1NIZn0ykQ4apyfQ4RPD4PJ527K5hxIoXz/preview?autoplay=1&mute=1&loop=1" allow="autoplay" allowfullscreen></iframe>
+  </div>
+  <p class="section-label">Who I Am</p>
+  <h2 class="section-title">STORY FIRST.<br>THEN VISUALS.</h2>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>I've spent three years at the intersection of <strong>documentary storytelling</strong> and <strong>generative AI</strong> — a combination that's still pretty rare. At Virtue Patch, I've led creative direction across a wide range of client projects, from fully AI-generated documentaries to productions with real talking heads and real footage.</p>
+      <p>What I do well is <strong>see the story before the visuals exist</strong>, then use tools like Runway, Sora, Midjourney, and Google Flow to build it frame by frame. I also know when a cut isn't working and why — the post-production judgment that's hard to teach.</p>
+      <p>My background in English Literature isn't incidental. It's why I think about <strong>narrative before aesthetics</strong>, and why my work tends to feel intentional rather than algorithmic.</p>
+    </div>
+    <div class="about-stats">
+      <div class="stat"><div class="stat-num">200+</div><div class="stat-label">AI Assets Delivered</div></div>
+      <div class="stat"><div class="stat-num">50+</div><div class="stat-label">Documentary Projects</div></div>
+      <div class="stat"><div class="stat-num">40%</div><div class="stat-label">Faster Turnaround</div></div>
+      <div class="stat"><div class="stat-num">3+</div><div class="stat-label">Years in AI Production</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <p class="section-label">What I Offer</p>
+  <h2 class="section-title">SERVICES</h2>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-num">01</div>
+      <h3 class="service-title">AI Documentary Direction</h3>
+      <p class="service-desc">Full creative direction of AI-generated documentaries — from concept and script to final post-production. I handle the story, the visual world, and the cut.</p>
+      <div class="service-tags"><span class="tag">Concept</span><span class="tag">Scripting</span><span class="tag">Post-Production</span></div>
+    </div>
+    <div class="service-card">
+      <div class="service-num">02</div>
+      <h3 class="service-title">AI Image &amp; Video Generation</h3>
+      <p class="service-desc">High-fidelity AI image and video generation for creators and film projects. Every asset is art-directed — not just prompted and exported.</p>
+      <div class="service-tags"><span class="tag">Midjourney</span><span class="tag">Runway</span><span class="tag">Sora</span><span class="tag">Google Flow</span></div>
+    </div>
+    <div class="service-card">
+      <div class="service-num">03</div>
+      <h3 class="service-title">Talking Heads &amp; Real Footage</h3>
+      <p class="service-desc">Script, direct, and produce documentaries with real on-camera talent and real footage — from story development through to final cut.</p>
+      <div class="service-tags"><span class="tag">Scripting</span><span class="tag">Direction</span><span class="tag">Real Footage</span></div>
+    </div>
+    <div class="service-card">
+      <div class="service-num">04</div>
+      <h3 class="service-title">Post-Production Consultation</h3>
+      <p class="service-desc">Pacing, color grading, audio integration, final composition. If your edit isn't working, I can tell you why — and fix it.</p>
+      <div class="service-tags"><span class="tag">DaVinci Resolve</span><span class="tag">Premiere Pro</span><span class="tag">After Effects</span></div>
+    </div>
+    <div class="service-card">
+      <div class="service-num">05</div>
+      <h3 class="service-title">Prompt Engineering &amp; AI Workflow</h3>
+      <p class="service-desc">Advanced prompt engineering for consistent, high-quality AI output at scale. Plus AI-first workflow building for teams integrating generative tools.</p>
+      <div class="service-tags"><span class="tag">Batch Optimization</span><span class="tag">Style Consistency</span><span class="tag">Training</span></div>
+    </div>
+    <div class="service-card">
+      <div class="service-num">06</div>
+      <h3 class="service-title">Documentary Writing &amp; Scripting</h3>
+      <p class="service-desc">Long-form narrative scripting for YouTube documentaries and branded video. Built around story structure that actually holds up in the edit.</p>
+      <div class="service-tags"><span class="tag">YouTube</span><span class="tag">Long-Form</span><span class="tag">Narrative</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="tools" id="tools">
+  <p class="section-label">My Stack</p>
+  <h2 class="section-title">TOOLS &amp;<br>TECHNOLOGIES</h2>
+  <div class="tools-grid">
+    <div class="tool-category">
+      <p class="tool-cat-label">AI Video Generation</p>
+      <div class="tool-list">
+        <span class="tool-pill">Runway Gen-2/3</span>
+        <span class="tool-pill">Sora</span>
+        <span class="tool-pill">Google Flow</span>
+        <span class="tool-pill">Grok</span>
+      </div>
+    </div>
+    <div class="tool-category">
+      <p class="tool-cat-label">AI Image Generation</p>
+      <div class="tool-list">
+        <span class="tool-pill">Midjourney</span>
+        <span class="tool-pill">Stable Diffusion</span>
+        <span class="tool-pill">Adobe Firefly</span>
+        <span class="tool-pill">Whisk</span>
+        <span class="tool-pill">Grok</span>
+      </div>
+    </div>
+    <div class="tool-category">
+      <p class="tool-cat-label">Post-Production</p>
+      <div class="tool-list">
+        <span class="tool-pill">DaVinci Resolve</span>
+        <span class="tool-pill">Adobe Premiere Pro</span>
+        <span class="tool-pill">After Effects</span>
+        <span class="tool-pill">Final Cut Pro</span>
+      </div>
+    </div>
+    <div class="tool-category">
+      <p class="tool-cat-label">Design &amp; Production</p>
+      <div class="tool-list">
+        <span class="tool-pill">Adobe Photoshop</span>
+        <span class="tool-pill">Figma</span>
+        <span class="tool-pill">Adobe Creative Suite</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <p class="section-label">Selected Work</p>
+  <h2 class="section-title">CASE<br>STUDIES</h2>
+
+  <!-- CASE STUDY 01 -->
+  <div class="case-study">
+    <div class="case-study-header">
+      <div class="case-num">01</div>
+      <div>
+        <p class="case-type">AI-Generated Documentary</p>
+        <h3 class="case-title">The Aaron Hernandez Story — Fame, Trauma &amp; The Life He Couldn't Escape</h3>
+        <p class="case-tagline">A fully AI-generated documentary dissecting the rise and fall of one of the NFL's most gifted — and troubled — athletes. From an abusive father to a hidden sexuality he could never confront, this film asks why a star in the making ended up in a jail cell.</p>
+        <div class="case-tools-row">
+          <span class="tag">Runway Gen-3</span><span class="tag">Midjourney</span><span class="tag">Sora</span><span class="tag">DaVinci Resolve</span><span class="tag">Premiere Pro</span>
+        </div>
+      </div>
+    </div>
+    <div class="case-body">
+      <div class="case-video">
+        <iframe src="https://drive.google.com/file/d/14QfJxK3n0x0wjbkx6fVBz8Jc3010RsNb/preview?autoplay=1&mute=1" allow="autoplay" allowfullscreen></iframe>
+        <p class="video-note">&#9654; Autoplaying muted — unmute anytime</p>
+      </div>
+      <div class="case-breakdown">
+        <div>
+          <p class="breakdown-label">The Brief</p>
+          <p class="breakdown-text">Tell the story of Aaron Hernandez — not just the crime, but the <strong>psychology behind it</strong>. A man shaped by trauma, suppressed identity, and a sports culture that rewarded performance over wellbeing.</p>
+        </div>
+        <div>
+          <p class="breakdown-label">What I Did</p>
+          <p class="breakdown-text">Wrote and structured the entire narrative from research to script. Generated every visual — game footage reconstructions, emotional flashbacks, environmental storytelling — using AI tools. Directed the pacing and tone through post-production to match the weight of the subject matter.</p>
+        </div>
+        <div>
+          <p class="breakdown-label">The Result</p>
+          <p class="breakdown-text">A documentary that feels like it was shot, not generated. <strong>Every frame serves the story</strong> — the visual language reflects Aaron's internal conflict, not just the external events.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CASE STUDY 02 -->
+  <div class="case-study">
+    <div class="case-study-header">
+      <div class="case-num">02</div>
+      <div>
+        <p class="case-type">AI Character Animation &amp; Cinematic Intro</p>
+        <h3 class="case-title">Client Intro — Cinematic Character Animation with First-Class Storytelling</h3>
+        <p class="case-tagline">A client needed more than a logo animation — they wanted a cinematic opening that made an impression. Maximum camera movement, character-driven animation, and storytelling that commands attention from the first frame.</p>
+        <div class="case-tools-row">
+          <span class="tag">Runway</span><span class="tag">Midjourney</span><span class="tag">After Effects</span><span class="tag">Premiere Pro</span>
+        </div>
+      </div>
+    </div>
+    <div class="case-body">
+      <div class="case-video">
+        <iframe src="https://drive.google.com/file/d/1NIZn0ykQ4apyfQ4RPD4PJ527K5hxIoXz/preview?autoplay=1&mute=1" allow="autoplay" allowfullscreen></iframe>
+        <p class="video-note">&#9654; Autoplaying muted — unmute anytime</p>
+      </div>
+      <div class="case-breakdown">
+        <div>
+          <p class="breakdown-label">The Brief</p>
+          <p class="breakdown-text">The client wanted a <strong>high-impact opening sequence</strong> — dynamic camera work, animated characters, and the kind of first impression that tells an audience this is serious, premium content.</p>
+        </div>
+        <div>
+          <p class="breakdown-label">What I Did</p>
+          <p class="breakdown-text">Designed and directed the entire visual sequence — character animations, camera movement choreography, and narrative arc — all produced using AI generation tools combined with professional compositing and post work.</p>
+        </div>
+        <div>
+          <p class="breakdown-label">The Result</p>
+          <p class="breakdown-text">An intro that <strong>sets the tone immediately</strong>. The client got exactly the premium, cinematic feel they were after — delivered fast, without a traditional production crew.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<section class="testimonials" id="testimonials">
+  <p class="section-label">Client Voices</p>
+  <h2 class="section-title">TESTIMONIALS</h2>
+  <div class="testimonials-grid">
+    <div class="testimonial-card">
+      <p class="testimonial-text">Shahzaib understood the vision immediately and delivered visuals we couldn't have achieved any other way. The sequences were seamless — you'd never know they weren't filmed on location.</p>
+      <p class="testimonial-author">— Client Name</p>
+      <p class="testimonial-role">YouTube Creator / Documentary Producer</p>
+      <p class="placeholder-note">[ Replace with real testimonial ]</p>
+    </div>
+    <div class="testimonial-card">
+      <p class="testimonial-text">What sets him apart is the storytelling instinct. He doesn't just generate images — he thinks about why each frame exists and what it needs to do for the audience.</p>
+      <p class="testimonial-author">— Client Name</p>
+      <p class="testimonial-role">Film Production House</p>
+      <p class="placeholder-note">[ Replace with real testimonial ]</p>
+    </div>
+    <div class="testimonial-card">
+      <p class="testimonial-text">The script was tight, the footage was compelling, and the final cut was exactly what we needed. He runs the whole process and you barely have to chase him.</p>
+      <p class="testimonial-author">— Client Name</p>
+      <p class="testimonial-role">Content Studio</p>
+      <p class="placeholder-note">[ Replace with real testimonial ]</p>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="contact-inner">
+    <div class="contact-left">
+      <h2 class="big-text">LET'S<br>BUILD<br><span>SOMETHING.</span></h2>
+      <p>Available for international projects — documentary direction, AI generation, talking head productions, and post-production consultation. Let's talk about what you're making.</p>
+      <a href="/cdn-cgi/l/email-protection#83e1f6e8ebe2f1eac3efeaf5e6ade0ecee" class="cta-btn">Get In Touch</a>
+    </div>
+    <div class="contact-details">
+      <div class="contact-item">
+        <p class="contact-item-label">Email</p>
+        <a href="/cdn-cgi/l/email-protection#e88a9d8380899a81a884819e8dc68b8785" class="contact-item-value"><span class="__cf_email__" data-cfemail="6507100e0d04170c25090c13004b060a08">[email&#160;protected]</span></a>
+      </div>
+      <div class="contact-item">
+        <p class="contact-item-label">Phone / WhatsApp</p>
+        <a href="tel:+923244225506" class="contact-item-value">+92 324 4225506</a>
+      </div>
+      <div class="contact-item">
+        <p class="contact-item-label">Location</p>
+        <span class="contact-item-value">Lahore, Pakistan</span>
+      </div>
+      <div class="contact-item">
+        <p class="contact-item-label">Availability</p>
+        <span class="contact-item-value available">Open to International Projects</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>&copy; 2026 Shahzaib Bukhari. All rights reserved.</p>
+  <p>Built to attract the right clients — <span>not everyone.</span></p>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', ()
